@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    // Clinical Record not found - 404
     @ExceptionHandler(ClinicalRecordNotFoundException.class)
     public ResponseEntity<Map<String, Object>> handleClinicalRecordNotFound(
             ClinicalRecordNotFoundException ex) {
@@ -28,7 +27,6 @@ public class GlobalExceptionHandler {
                 .body(response);
     }
 
-    // Patient not found - 404
     @ExceptionHandler(PatientNotFoundException.class)
     public ResponseEntity<Map<String, Object>> handlePatientNotFound(
             PatientNotFoundException ex) {
@@ -44,7 +42,6 @@ public class GlobalExceptionHandler {
                 .body(response);
     }
 
-    // Validation errors - 400
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationErrors(
             MethodArgumentNotValidException ex) {
@@ -65,7 +62,6 @@ public class GlobalExceptionHandler {
                 .body(errors);
     }
 
-    // Any unexpected error - 500
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGeneralException(
             Exception ex) {
