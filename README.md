@@ -1,14 +1,8 @@
 # Patient Management API
 
-T-001 Patient Management API developed using Spring Boot, MySQL, and REST APIs.
+A Spring Boot REST API for managing patients and their clinical records.
 
-## Project
-
-UK Healthcare Patient Management Platform
-
-## Module
-
-T-001 - Patient Management API
+This project was developed as part of the Westgate Healthcare Patient Management Platform.
 
 ## Technologies Used
 
@@ -17,65 +11,105 @@ T-001 - Patient Management API
 - Spring Data JPA
 - Hibernate
 - MySQL
-- REST API
+- Spring Security
+- REST APIs
+- Bean Validation
+- Swagger / OpenAPI
 - Maven
 - Lombok
-- Postman
 - Git & GitHub
-
-## Features
-
-- Create a new patient
-- Get all patients
-- Get patient by ID
-- Update patient details
-- Delete patient
-- MySQL database integration
-- JPA/Hibernate persistence
-
-## API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/patients` | Create a patient |
-| GET | `/api/patients` | Get all patients |
-| GET | `/api/patients/{id}` | Get patient by ID |
-| PUT | `/api/patients/{id}` | Update patient |
-| DELETE | `/api/patients/{id}` | Delete patient |
-
-## Patient Fields
-
-- ID
-- First Name
-- Last Name
-- Email
-- Phone
 
 ## Database
 
-Database Name:
+Database:
 
 `patient_management`
 
-Table Name:
+Main tables:
 
-`patients`
+- `patients`
+- `clinical_records`
+- `audit_logs`
 
-## Project Structure
+## Features
 
-```text
-patient-management-api/
-├── src/main/java/com/westgate/patient/
-│   ├── controller/
-│   │   └── PatientController.java
-│   ├── entity/
-│   │   └── Patient.java
-│   ├── repository/
-│   │   └── PatientRepository.java
-│   ├── service/
-│   │   ├── PatientService.java
-│   │   └── PatientServiceImpl.java
-│   └── PatientManagementApiApplication.java
-├── src/main/resources/
-│   └── application.properties
-└── pom.xml
+### Patient Management
+
+- Create patient
+- Get patient by ID
+- Get all patients
+- Update patient
+- Delete patient
+- Patient validation
+- Exception handling
+
+### Clinical Record Service
+
+- Create clinical record
+- Get clinical record by ID
+- Get clinical records by patient ID
+- Update clinical record
+- Delete clinical record
+- Request validation
+- Clinical record not-found handling
+
+### Security
+
+Clinical record APIs are protected using Spring Security HTTP Basic Authentication.
+
+Development users:
+
+- Username: `doctor`
+- Password: `Doctor@123`
+
+- Username: `admin`
+- Password: `Admin@123`
+
+> These credentials are for development/testing purposes only.
+
+### Audit Logging
+
+The system records clinical record operations in the `audit_logs` table.
+
+Logged operations include:
+
+- CREATE
+- READ
+- READ_BY_PATIENT
+- UPDATE
+- DELETE
+
+Each audit entry records:
+
+- Username
+- Action
+- Resource
+- Resource ID
+- Timestamp
+
+## Clinical Record API Endpoints
+
+Base URL:
+
+`http://localhost:9652/api/clinical-records`
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/clinical-records` | Create clinical record |
+| GET | `/api/clinical-records/{id}` | Get clinical record |
+| GET | `/api/clinical-records/patient/{patientId}` | Get records for patient |
+| PUT | `/api/clinical-records/{id}` | Update clinical record |
+| DELETE | `/api/clinical-records/{id}` | Delete clinical record |
+
+## Example Clinical Record Request
+
+```json
+{
+  "patientId": 1,
+  "recordType": "DIAGNOSIS",
+  "diagnosis": "Seasonal infection",
+  "symptoms": "Fever and cough",
+  "treatment": "Medication prescribed",
+  "notes": "Follow-up if symptoms persist",
+  "recordDate": "2026-10-07"
+}
