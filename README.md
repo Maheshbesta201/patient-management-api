@@ -1,10 +1,17 @@
 # Patient Management API
 
-A Spring Boot REST API for managing patients and their clinical records.
+A Spring Boot REST API developed for the **Westgate Healthcare Patient Management Platform**.
 
-This project was developed as part of the Westgate Healthcare Patient Management Platform.
+This project contains the implementation of:
 
-## Technologies Used
+- **T-001 – Patient Management API**
+- **T-003 – Clinical Record Service API**
+
+The application provides REST APIs for patient management and clinical record management with database persistence, validation, security, exception handling, audit logging and Swagger/OpenAPI documentation.
+
+---
+
+# Technologies Used
 
 - Java 25
 - Spring Boot 4.1.1
@@ -17,99 +24,42 @@ This project was developed as part of the Westgate Healthcare Patient Management
 - Swagger / OpenAPI
 - Maven
 - Lombok
-- Git & GitHub
+- Git
+- GitHub
 
-## Database
+---
 
-Database:
+# T-001 – Patient Management API
 
-`patient_management`
+## Description
 
-Main tables:
-
-- `patients`
-- `clinical_records`
-- `audit_logs`
+T-001 provides REST APIs for managing patient information using Spring Boot, Spring Data JPA, Hibernate and MySQL.
 
 ## Features
 
-### Patient Management
-
 - Create patient
-- Get patient by ID
 - Get all patients
+- Get patient by ID
 - Update patient
 - Delete patient
-- Patient validation
+- MySQL database integration
+- JPA/Hibernate persistence
+- Request validation
 - Exception handling
 
-### Clinical Record Service
+## Patient Fields
 
-- Create clinical record
-- Get clinical record by ID
-- Get clinical records by patient ID
-- Update clinical record
-- Delete clinical record
-- Request validation
-- Clinical record not-found handling
+The Patient entity contains:
 
-### Security
+- Patient ID
+- First Name
+- Last Name
+- Email
+- Phone
 
-Clinical record APIs are protected using Spring Security HTTP Basic Authentication.
-
-Development users:
-
-- Username: `doctor`
-- Password: `Doctor@123`
-
-- Username: `admin`
-- Password: `Admin@123`
-
-> These credentials are for development/testing purposes only.
-
-### Audit Logging
-
-The system records clinical record operations in the `audit_logs` table.
-
-Logged operations include:
-
-- CREATE
-- READ
-- READ_BY_PATIENT
-- UPDATE
-- DELETE
-
-Each audit entry records:
-
-- Username
-- Action
-- Resource
-- Resource ID
-- Timestamp
-
-## Clinical Record API Endpoints
+## Patient API Endpoints
 
 Base URL:
 
-`http://localhost:9652/api/clinical-records`
-
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/api/clinical-records` | Create clinical record |
-| GET | `/api/clinical-records/{id}` | Get clinical record |
-| GET | `/api/clinical-records/patient/{patientId}` | Get records for patient |
-| PUT | `/api/clinical-records/{id}` | Update clinical record |
-| DELETE | `/api/clinical-records/{id}` | Delete clinical record |
-
-## Example Clinical Record Request
-
-```json
-{
-  "patientId": 1,
-  "recordType": "DIAGNOSIS",
-  "diagnosis": "Seasonal infection",
-  "symptoms": "Fever and cough",
-  "treatment": "Medication prescribed",
-  "notes": "Follow-up if symptoms persist",
-  "recordDate": "2026-10-07"
-}
+```text
+http://localhost:9652
