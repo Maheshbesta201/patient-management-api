@@ -1,17 +1,8 @@
 # Patient Management API
 
-A Spring Boot REST API developed for the **Westgate Healthcare Patient Management Platform**.
+A Spring Boot REST API developed for the Westgate Healthcare Patient Management Platform.
 
-This project contains the implementation of:
-
-- **T-001 – Patient Management API**
-- **T-003 – Clinical Record Service API**
-
-The application provides REST APIs for patient management and clinical record management with database persistence, validation, security, exception handling, audit logging and Swagger/OpenAPI documentation.
-
----
-
-# Technologies Used
+## Technologies Used
 
 - Java 25
 - Spring Boot 4.1.1
@@ -19,47 +10,59 @@ The application provides REST APIs for patient management and clinical record ma
 - Hibernate
 - MySQL
 - Spring Security
-- REST APIs
-- Bean Validation
 - Swagger / OpenAPI
-- Maven
-- Lombok
-- Git
-- GitHub
 
----
+## T-001 – Patient Management API
 
-# T-001 – Patient Management API
+### Description
 
-## Description
+T-001 implements REST APIs for creating, retrieving, updating, and deleting patient information.
 
-T-001 provides REST APIs for managing patient information using Spring Boot, Spring Data JPA, Hibernate and MySQL.
+### API Endpoints
 
-## Features
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/patients` | Create patient |
+| GET | `/api/patients` | Get all patients |
+| GET | `/api/patients/{id}` | Get patient by ID |
+| PUT | `/api/patients/{id}` | Update patient |
+| DELETE | `/api/patients/{id}` | Delete patient |
 
-- Create patient
-- Get all patients
-- Get patient by ID
-- Update patient
-- Delete patient
-- MySQL database integration
-- JPA/Hibernate persistence
-- Request validation
-- Exception handling
+## T-003 – Clinical Record Service API
 
-## Patient Fields
+### Description
 
-The Patient entity contains:
+T-003 implements REST APIs for managing clinical records associated with patients.
 
-- Patient ID
-- First Name
-- Last Name
-- Email
-- Phone
+### API Endpoints
 
-## Patient API Endpoints
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/clinical-records` | Create clinical record |
+| GET | `/api/clinical-records/{id}` | Get clinical record |
+| GET | `/api/clinical-records/patient/{patientId}` | Get patient clinical records |
+| PUT | `/api/clinical-records/{id}` | Update clinical record |
+| DELETE | `/api/clinical-records/{id}` | Delete clinical record |
 
-Base URL:
+## Project Structure
 
 ```text
-http://localhost:9652
+patient-management-api/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/westgate/patient/
+│   │   │       ├── audit/
+│   │   │       ├── config/
+│   │   │       ├── controller/
+│   │   │       ├── dto/
+│   │   │       ├── entity/
+│   │   │       ├── exception/
+│   │   │       ├── repository/
+│   │   │       └── service/
+│   │   └── resources/
+│   │       └── application.properties
+│   └── test/
+├── pom.xml
+├── .gitignore
+└── README.md
